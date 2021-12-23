@@ -57,8 +57,7 @@
 <body>
   <h1>jsQR Demo</h1>
   <a id="githubLink" href="https://github.com/cozmo/jsQR">View documentation on Github</a>
-  <p>Pure JavaScript QR code decoding library.</p>
-  <div id="loadingMessage" hidden="">⌛ Loading video...</div>
+  <div id="loadingMessage" hidden="">⌛ Loading camera...</div>
   <canvas id="canvas" height="240" width="320"></canvas>
   <div id="output">
     <div id="outputMessage">No QR code detected.</div>
@@ -91,7 +90,7 @@
     });
 
     function tick() {
-      loadingMessage.innerText = "⌛ Loading video..."
+      loadingMessage.innerText = "⌛";
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
         loadingMessage.hidden = true;
         canvasElement.hidden = false;
@@ -109,8 +108,8 @@
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, " #2D99FF");
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, " #2D99FF");
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, " #2D99FF");
-
-         
+          console.log(code);
+          outputData.innerHTML = code.data;
         }
         else {
           outputMessage.hidden = false;
